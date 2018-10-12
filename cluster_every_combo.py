@@ -1,3 +1,10 @@
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.cluster import DBSCAN
+from sklearn.utils import shuffle
+from sklearn.preprocessing import StandardScaler
+import pandas as pd
+
 """1st parameter: number of combinations to combine at one time. READ DOCUMENTATIONN FOR FURTHER CLARIFICATION"""
 """2nd parameter: the clustering algotihm to use. DBSCAN is chosen as the standard. The other option is 'kmeans'.""" 
 
