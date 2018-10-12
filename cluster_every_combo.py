@@ -5,17 +5,18 @@ from sklearn.utils import shuffle
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
-"""1st parameter: number of combinations to combine at one time. READ DOCUMENTATIONN FOR FURTHER CLARIFICATION"""
-"""2nd parameter: the clustering algotihm to use. DBSCAN is chosen as the standard. The other option is 'kmeans'.""" 
+"""required parameter - db: A pandas dataframe. Must only consist of features. If there is a y_lables column, see y_lables parameter"""
+"""optional parameter - amount_of_combinations: number of combinations to combine at one time. READ DOCUMENTATIONN FOR FURTHER CLARIFICATION"""
+"""optional parameter - clustering_algo: the clustering algotihm to use. Default ia DBSCAN. The other option is 'kmeans'.""" 
+"""optional parameter - y_labels: Whether or not the database has a y_labels column or not. Default set to False""" 
 
-"""THIS ALGORITHM ASSUMES THEIR IS A Y LABEL COLUMN IN THE PANDAS DATAFRAME. IF THERE IS NOT, JUST APPEND 
-A COLUMN OF SOME ARBITUARY INT VALUE TO THE END OF THE DATAFRAME THAT WILL ACT AS A LABEL COLUMN"""
 class run_cluster_of_every_combo():
     
-    def __init__(self, db, amount_of_combinations = 1, clustering_algo = 'DBSCAN'):
+    def __init__(self, db, amount_of_combinations = 1, clustering_algo = 'DBSCAN', y_labels = False):
         self.db = db
         self.amount_of_combinations = amount_of_combinations
         self.clustering_algo = clustering_algo
+        self.y_labels = y_labels
         
         self.seperate_x_and_y()
            
@@ -26,16 +27,19 @@ class run_cluster_of_every_combo():
         """shuffles the entire database"""
         self.db = shuffle(self.db)
         
-        """save the feature names and remove the last column name, which is 'labels' """
+        """save the feature names """
         self.feature_names = [i for i in self.db]
-        self.feature_names = self.feature_names[:-1]
         
         self.db = np.array(self.db)
-        """get the labels from our array"""
-        self.y = self.db.T[-1]
-        """delete the last column in the array, which are the labels"""
-        self.db = np.delete(self.db, -1, axis=1)
         
+        if self.y_labels == True:
+            """get the labels from our array"""
+            self.y = self.db.T[-1]
+            """delete the last column in the array, which are the labels"""
+            self.db = np.delete(self.db, -1, axis=1)
+            """remove the last column name, which is 'labels' """
+            self.feature_names = self.feature_names[:-1]
+               
         standard_scale = StandardScaler(with_mean = False)
         self.x = standard_scale.fit_transform(self.db)
     
