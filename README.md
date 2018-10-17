@@ -8,4 +8,6 @@ PARAMETERS:
 4. optional parameter - y_labels: Whether or not the database has a y_labels column or not. Default set to False
 
 Objects that algorith returns:
-1. self.matrix_of_cooresponding_labels - returns the 
+1. self.matrix_of_cooresponding_labels - returns the combinations of features in a list of list. EX:[['running_status', 'drive_current_monitor'],
+ ['running_status', 'gas_lock_maximum_cycles'],
+ ['running_status', 'fluid_over_pump_monitor'] ]
