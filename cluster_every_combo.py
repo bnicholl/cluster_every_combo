@@ -157,5 +157,5 @@ class run_cluster_of_every_combo():
         
         self.reengineered_labels_matrix = np.array(self.reengineered_labels_matrix)
         
-        
-a = run_cluster_of_every_combo(db)
+"""example code for how to run algo"""        
+#a = run_cluster_of_every_combo(db)
