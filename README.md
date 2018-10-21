@@ -1,5 +1,5 @@
 # cluster_every_combo
-Runs through a database of features, and clusters every single combination. amount_of_combinations parameter gives you the option to tell the algorithm how many features you want to cluster at a time.
+Runs through a database of features, and clusters every single combination. amount_of_combinations parameter gives you the option to tell the algorithm how many features you want to cluster at a time. I used this algo for I job I was working on where the data had labels, but the labels were wrong a lot of the time. I clustered every single combination, then calculated the probaility of a cluster having a the deisred label I was looking for. I then reenginered the labels where if a cluster had above a 70% chance of being the desired label I was looking for, every single trainig example within that cluster would now have that specific label. This is just one application of how this algo can be useful. 
 
 PARAMETERS:
 1. required parameter - db: A pandas dataframe. Must only consist of features. If there is a y_lables column, see y_lables parameter
